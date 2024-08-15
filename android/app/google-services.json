@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "901694373966",
+    "project_id": "mini-social-c7847",
+    "storage_bucket": "mini-social-c7847.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901694373966:android:a6f7a93ba205a3d949031f",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq-cJgIS-iJl5M-ixJ0MsbjPhkgrA2nU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
