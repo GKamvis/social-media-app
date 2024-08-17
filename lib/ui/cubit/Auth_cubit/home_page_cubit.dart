@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/data/entity/users.dart';
 import '../../../data/repo/user_repo.dart';
+
 class HomePageCubit extends Cubit<List<Users>> {
   HomePageCubit() : super([]);
 
@@ -33,5 +34,29 @@ class HomePageCubit extends Cubit<List<Users>> {
   Future<void> addPost(String name, String mesage) async {
     await repo.addPost(name, mesage);
   }
+
+  Future<void> addComment(String postId, String userId, String comment) async {
+    await repo.addComment(postId, userId, comment);
+  }
+
+
+  Future<void> toggleLike(String postId, bool isLiked) async {
+    await repo.toggleLike(postId, isLiked);
+    getPost(); 
+  }
+
+  Future<List<Map<String, dynamic>>> getComments(String postId) async {
+  QuerySnapshot commentsSnapshot = await FirebaseFirestore.instance
+      .collection('Posts')
+      .doc(postId)
+      .collection('Comments')
+      .orderBy('timestamp')
+      .get();
+
+  return commentsSnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+}
+
+
+
 
 }
