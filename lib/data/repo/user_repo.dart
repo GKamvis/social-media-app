@@ -6,12 +6,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 class UserRepo {
   var collectionPosts = FirebaseFirestore.instance.collection('Posts');
 
-  Future<void> addPost(String name, String mesage) async {
+ Future<void> addPost(String name, String mesage, [String? imageUrl]) async {
     var newMesage = HashMap<String, dynamic>();
     newMesage['name'] = name;
     newMesage['mesage'] = mesage;
     newMesage['likes'] = {};
-
+    if (imageUrl != null) {
+      newMesage['imageUrl'] = imageUrl;
+    }
     await collectionPosts.add(newMesage);
   }
 

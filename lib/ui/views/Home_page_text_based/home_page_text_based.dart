@@ -1,22 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/ui/cubit/Auth_cubit/home_page_cubit.dart';
-import '../../data/entity/users.dart';
+import '../../../data/entity/users.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
-
   final user = FirebaseAuth.instance.currentUser;
   final TextEditingController _postController = TextEditingController();
   final TextEditingController _commentController = TextEditingController();
-
   void signOut() async {
     await FirebaseAuth.instance.signOut();
   }
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -137,6 +133,30 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ],
+        ),
+        drawer: Drawer(
+          
+          child:ListView(
+            children: [
+              DrawerHeader(child: Text(user!.email.toString())),
+              ListTile(
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.pushNamed(context, '/home');
+              },
+            ),
+
+                 ListTile(
+              title: const Text('Share Image'),
+              onTap: () {
+                Navigator.pushNamed(context, '/image_share');
+              },
+            ),
+
+            ]
+
+          
+          ),
         ),
       ),
     );
